@@ -1,18 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Todo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.task}{" "}
-        <button onClick={() => this.props.removeTodo(this.props.id)}>x</button>
-      </div>
-    );
-  }
-}
+const Todo = props => (
+  <div>
+    {props.task} <button onClick={() => props.removeTodo(props.id)}>x</button>
+  </div>
+);
 
 export default Todo;

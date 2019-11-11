@@ -11,11 +11,11 @@ class TodoList extends Component {
     };
     this.renderTodoList = this.renderTodoList.bind(this);
     this.addTodo = this.addTodo.bind(this);
-    this.removeTodo = this.removeTodo(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   renderTodoList() {
-    return this.state.todos.map(todo => <Todo {...todo} key={todo.id} />);
+    return this.state.todos.map(todo => <Todo {...todo} key={todo.id} removeTodo={this.removeTodo} />);
   }
 
   addTodo(todo) {
