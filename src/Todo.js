@@ -35,7 +35,13 @@ class Todo extends Component {
   render() {
     let renderData = (
       <div>
-        {this.props.task}
+        <div
+          style={this.props.isDone ? { textDecoration: "line-through" } : {}}
+          onClick={() => this.props.updateTodoStatus(this.props.id)}
+        >
+          {" "}
+          {this.props.task}
+        </div>
         <button onClick={this.editTodo}>Edit</button>
         <button onClick={() => this.props.removeTodo(this.props.id)}>x</button>
       </div>
