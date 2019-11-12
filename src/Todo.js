@@ -9,8 +9,9 @@ class Todo extends Component {
       id: this.props.id
     };
     this.editTodo = this.editTodo.bind(this);
-    this.updateTodo = this.updateTodo.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   editTodo() {
@@ -19,7 +20,7 @@ class Todo extends Component {
     });
   }
 
-  updateTodo() {
+  handleUpdate() {
     this.props.updateTodo({ task: this.state.task, id: this.state.id });
     this.setState({
       isEditable: false
@@ -30,6 +31,10 @@ class Todo extends Component {
     this.setState({
       task: evt.target.value
     });
+  }
+
+  handleRemove() {
+    this.props.removeTodo(this.props.id);
   }
 
   render() {
@@ -43,7 +48,7 @@ class Todo extends Component {
           {this.props.task}
         </div>
         <button onClick={this.editTodo}>Edit</button>
-        <button onClick={() => this.props.removeTodo(this.props.id)}>x</button>
+        <button onClick={this.handleRemove}>x</button>
       </div>
     );
     if (this.state.isEditable) {
@@ -55,9 +60,7 @@ class Todo extends Component {
             value={this.state.task}
             onChange={this.handleChange}
           />
-          <button onClick={this.updateTodo} id={this.props.id}>
-            Save
-          </button>
+          <button onClick={this.handleUpdate}>Save</button>
         </div>
       );
     }

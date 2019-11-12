@@ -39,8 +39,6 @@ class TodoList extends Component {
 
   updateTodo(newTodo) {
     const todos = [...this.state.todos];
-    let updatedTodo = todos.filter(todo => todo.id === newTodo.id);
-    updatedTodo.task = newTodo.task;
     const updatedTodos = todos.map(todo => {
       if (todo.id === newTodo.id) todo = newTodo;
       return todo;
@@ -57,16 +55,16 @@ class TodoList extends Component {
       };
     });
   }
-  updateTodoStatus(id){
-      const todos = [...this.state.todos];
+  updateTodoStatus(id) {
+    const todos = [...this.state.todos];
 
-      const updatedTodos = todos.map(todo => {
-        if (todo.id === id) todo.isDone = !todo.isDone;
-        return todo;
-      });
-      this.setState({
-        todos: updatedTodos
-      });
+    const updatedTodos = todos.map(todo => {
+      if (todo.id === id) todo.isDone = !todo.isDone;
+      return todo;
+    });
+    this.setState({
+      todos: updatedTodos
+    });
   }
 
   render() {
