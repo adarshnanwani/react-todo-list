@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Todo.css';
 
 class Todo extends Component {
   constructor(props) {
@@ -39,28 +40,36 @@ class Todo extends Component {
 
   render() {
     let renderData = (
-      <div>
-        <div
-          style={this.props.isDone ? { textDecoration: "line-through" } : {}}
+      <div className="Todo">
+        <li
+          className={this.props.isDone ? "Todo-task completed" : "Todo-task"}
           onClick={() => this.props.updateTodoStatus(this.props.id)}
         >
           {" "}
           {this.props.task}
+        </li>
+        <div className="Todo-buttons">
+          <button onClick={this.editTodo}>
+            <i className="fa fa-pencil" />
+          </button>
+          <button onClick={this.handleRemove}>
+            <i className="fa fa-trash" />
+          </button>
         </div>
-        <button onClick={this.editTodo}>Edit</button>
-        <button onClick={this.handleRemove}>x</button>
       </div>
     );
     if (this.state.isEditable) {
       renderData = (
-        <div>
-          <input
-            type="text"
-            name="task"
-            value={this.state.task}
-            onChange={this.handleChange}
-          />
-          <button onClick={this.handleUpdate}>Save</button>
+        <div className="Todo">
+          <form className="Todo-edit-form">
+            <input
+              type="text"
+              name="task"
+              value={this.state.task}
+              onChange={this.handleChange}
+            />
+            <button onClick={this.handleUpdate}>Save</button>
+          </form>
         </div>
       );
     }
